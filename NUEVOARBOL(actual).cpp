@@ -203,6 +203,7 @@ while(!Archivo.eof()){
     if(letra=="|"){
         fflush( stdin );
        B.push_back(v[0]);B.push_back(v[1]);
+      // InsertarEmpleados(*&Arbol->izq,Cedula,Salario,Bonificaciones,Descuentos ,Nombre ,NombreEmpresa ,FechaNacimiento ,Departamento ,Cod1,Cod2); 
         if(v[1]=="ECOPETROL EMPRESA A"){
         InsertarEmpleados(Abb1 ,atoll(v[0].c_str()),v[1],v[2],v[3],v[4],atoll(v[5].c_str()) );    
         }if(v[1]=="BAVARIA EMPRESA B"){

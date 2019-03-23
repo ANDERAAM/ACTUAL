@@ -191,30 +191,33 @@ ifstream Archivo;string letra;string total;vector<string> v;fflush( stdin );
 Archivo.open("Empleados.txt",ios::in);
 while(!Archivo.eof()){
     Archivo>>letra;
-    if(letra!="*" && letra!="|"){
-    total=total+" "+letra;
+      if(letra!="*" && letra!="|"){
+      total=total+" "+letra;
+      //cout<<total<<endl;
       }if(letra=="*" && letra!="|" ){
-        fflush( stdin );
-        total = Espacio(total);
-        //cout<<total<<endl;
-        v.push_back(total);
-        total.clear();
+      total = Espacio(total);
+      cout<<total<<endl;
+      v.push_back(total);
+      total.clear();
     }
     if(letra=="|"){
-        fflush( stdin );
-       B.push_back(v[0]);B.push_back(v[1]);
-        if(v[1]=="ECOPETROL EMPRESA A"){
+    fflush( stdin );
+    
+    B.push_back(v[0]);B.push_back(v[1]);
+//    for(int i=0;i<v.size();i++)cout<<v[i]<<endl;
+        /*if(v[1]=="ECOPETROL EMPRESA A"){
         InsertarEmpleados(Abb1 ,atoll(v[0].c_str()),atoll(v[5].c_str()),atoll(Fichero[7].c_str()),atoll(Fichero[6].c_str()),v[1],v[2],v[3],v[4],Fichero[4],Fichero[5]);    
         }if(v[1]=="BAVARIA EMPRESA B"){
         InsertarEmpleados(Abb2 ,atoll(v[0].c_str()),atoll(v[5].c_str()),atoll(Fichero[7].c_str()),atoll(Fichero[6].c_str()),v[1],v[2],v[3],v[4],Fichero[4],Fichero[5] );    
         }if(v[1]=="CEMENTOS ARGOS EMPRESA C"){
         InsertarEmpleados(Abb3 ,atoll(v[0].c_str()),atoll(v[5].c_str()),atoll(Fichero[7].c_str()),atoll(Fichero[6].c_str()),v[1],v[2],v[3],v[4],Fichero[4],Fichero[5]);   
+    */
     }
     v.clear();
 }
-}
 Archivo.close();
-}   
+}
+ 
 void PreOrden(Empleados *&Arbol){
      if(Arbol!=NULL)
      {
@@ -264,9 +267,10 @@ void Encontro(Empleados *&Arbol,long long x){
 
 
 int main(){
-    BaseArbol();
-    BaseFichero();
-    PreOrden(Abb1);
+    fflush( stdin );fflush( stdin );fflush( stdin );
+    //BaseFichero();
+    BaseArbol();//for(int i=0;i<v.size();i++)cout<<v[i]<<endl;
+    //PreOrden(Abb1);
 	getch();
 }
 

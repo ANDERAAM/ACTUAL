@@ -52,7 +52,7 @@ void InsertarEmpleados(Empleados *&Arbol,long long Cedula,long long Bonificacion
  if   (Arbol == NULL){
       Arbol = CrearEmpleados(*&Arbol,Cedula,Salario,Bonificaciones,Descuentos ,Nombre ,NombreEmpresa ,FechaNacimiento ,Departamento ,Cod1,Cod2);
       }else if (Cedula < Arbol->Cedula) {
-      InsertarEmpleados(Arbol->izq,Cedula ,Cedula,Salario,Bonificaciones,Descuentos ,Nombre ,NombreEmpresa ,FechaNacimiento ,Departamento ,Cod1,Cod2);
+      InsertarEmpleados(Arbol->izq,Cedula, Salario, Bonificaciones, Descuentos ,Nombre ,NombreEmpresa ,FechaNacimiento ,Departamento ,Cod1,Cod2);
       }else if (Cedula > Arbol->Cedula) {
       InsertarEmpleados(Arbol->der,Cedula,Salario,Bonificaciones,Descuentos ,Nombre ,NombreEmpresa ,FechaNacimiento ,Departamento ,Cod1,Cod2);
       }

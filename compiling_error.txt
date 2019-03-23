@@ -1,0 +1,7 @@
+C:\Users\DELL\Desktop\Arboles - github\NUEVOARBOL(actual).cpp: In function 'int Posicion(std::__cxx11::string, std::vector<std::__cxx11::basic_string<char> >)':
+C:\Users\DELL\Desktop\Arboles - github\NUEVOARBOL(actual).cpp:170:18: error: expected primary-expression before '<' token
+    int a=0;cout<<<b.size()<<endl;
+                  ^
+C:\Users\DELL\Desktop\Arboles - github\NUEVOARBOL(actual).cpp:170:27: error: invalid operands of types 'std::vector<std::__cxx11::basic_string<char> >::size_type {aka long long unsigned int}' and '<unresolved overloaded function type>' to binary 'operator<<'
+    int a=0;cout<<<b.size()<<endl;
+                   ~~~~~~~~^~~~~~

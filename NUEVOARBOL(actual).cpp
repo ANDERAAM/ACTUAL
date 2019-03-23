@@ -163,25 +163,25 @@ string Espacio(string x){
     }
     return y;
 }
-int Parbol(int x,vector<string>b){
-    cout<<"ESTA ES LA EMPRRESA 1 : "<<b[x]<<endl;
-}
 int Posicion(string x,vector<string>b){
-   int a=0;cout<<<b.size()<<endl;
+   fflush( stdin );fflush( stdin );int a=0;
   for(int i=0;i<b.size()/2;i++){
      a = i*2;
      if(b[a]==x){
-      //  a = a + 1 ;
-        cout<<"ESTA ES LA EMPRESA 1 : "<<b[a]<<endl; 
-      // Parbol(a,b);
-       return i;
+       return a;
        exit(1);
     } 
    }
    return -1;
      
 }
-
+string Parbol(string x,vector<string>b){
+    int P = Posicion(x,b);
+    if(b[P+1]=="ECOPETROL EMPRESA A"){return "Abb1";exit(1);}
+    if(b[P+1]=="BAVARIA EMPRESA B"){return "Abb2";exit(1);}
+    if(b[P+1]=="CEMENTOS ARGOS EMPRESA C"){return "Abb3";exit(1);}
+    return "-1";
+}
 
 
 void BaseFichero(){
@@ -290,21 +290,26 @@ void MOD(Empleados *&Arbol,long long x){
     if(Arbol!=NULL)
     {     
           if( Arbol->Cedula == x ){            
-            long long Cedula ;string Nombre ;string FechaNacimiento ;long long Salario;string Opcion;
+            long long Cedula ;string Nombre ;string FechaNacimiento ;long long Salario;string Opcion;string Numero;
             gotoxy(70,8);  cout<<"SELECCIONE LOS DATOS DEL EMPLEADO QUE DESEA MODIFICAR";
-            gotoxy(87,11);  cout<<"0. CEDULA";
-            gotoxy(87,13);  cout<<"1. EMPRESA A DONDE LABORA";
+            gotoxy(87,11); cout<<"0. CEDULA";
+            gotoxy(87,13); cout<<"1. EMPRESA A DONDE LABORA";
             gotoxy(87,15); cout<<"2. NOMBRE COMPLETO";
             gotoxy(87,17); cout<<"3. FECHA DE NACIMIENTO";
             gotoxy(87,19); cout<<"4. DEPARTAMENTO";
             gotoxy(87,21); cout<<"5. SALARIO DEL EMPLEADO";
             gotoxy(70,24);cout<<"Seleccione EL Departamento Deacuerdo Al Numero -> ";fflush( stdin );cin>>Opcion;
+            if(Opcion=="0"){
+            gotoxy(72,19); cout<<"INGRESE LA CEDULA DEL NUEVO EMPLEADO : ";fflush( stdin );cin>>Numero;int P=Posicion(Numero,B2);
+            if(P!=-1){system("cls");gotoxy(50,12);printf("I N G R E S E  U N A  C E D U L A  N O  R E P E T I D A");getch();  exit(1);}}
+            if(Opcion=="1"){}
           getch();
           }
           MOD(Arbol->izq,x);
           MOD(Arbol->der,x);
     }
 }
+
 void Encontro(Empleados *&Arbol,long long x){
     int P = busquedaRec(Arbol,x);
     if(P==0){
@@ -320,11 +325,27 @@ void Encontro(Empleados *&Arbol,long long x){
 
 int main(){
     fflush( stdin );fflush( stdin );fflush( stdin );string Cedula;
-    BaseFichero();
+    BaseFichero();//for(int i=0;i<B1.size();i++)// cout<<" este es el valor de "<<B1[i]<<endl;
     BaseArbol();
-    int P = Posicion("1081827159",B2);
+    Auxiliar.clear();
+    cout<<"Ingrese La Cedula Que Desea Modificar ";cin>>Cedula;cout<<endl;
+    int P = Posicion(Cedula,B2);string Arbol = Parbol(Cedula,B2);
+    if(P!=-1){
+    if("Abb1"==Arbol){Encontro(Abb1,Convertir(B2[P])); }
+    if("Abb2"==Arbol){Encontro(Abb2,Convertir(B2[P])); }
+    if("Abb3"==Arbol){Encontro(Abb3,Convertir(B2[P])); }
+    }else{
+      system("cls");
+      gotoxy(50,12);gotoxy(72,20);printf("::: LA CEDULA NO SE ENCUENTRA EN EL SISTEMA :::");
+      getch();
+      exit(-1); 
+    }
     
-    //for(int i=0;i<B2.size();i++) cout<<B2[i]<<endl;
+    
+    //int P = Posicion("123000",B2);
+  //  cout<<B2[P]<<" "<<P<<endl;
+    
+    
   
   //PreOrden(Abb1);PreOrden(Abb2);PreOrden(Abb3);    
     /*cout<<"Ingrese La Cedula Que Desea Modificar ";cin>>Cedula;cout<<endl;

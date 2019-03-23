@@ -29,8 +29,7 @@ ABB1 Abb1 = NULL;
 ABB2 Abb2 = NULL;
 ABB3 Abb3 = NULL;
 
-vector<string>B;vector<string>Auxiliar;vector<string>Fichero;
-
+vector<string>B1;vector<string>B2;vector<string>Auxiliar;vector<string>Fichero;vector<string>v;
 
 Empleados *CrearEmpleados(Empleados *&Arbol ,long long Cedula, long long Salario,long long  Bonificaciones , long long Descuentos ,string Nombre ,string NombreEmpresa , string FechaNacimiento , string Departamento , string Cod1,string Cod2 ){
     Empleados *Empleado              =   new Empleados();
@@ -90,8 +89,6 @@ string Espacio(string x){
     }
     return y;
 }
-
-
 
 void CrearEmpleado();
 void Empresa1();
@@ -170,24 +167,21 @@ void EliminarABB3(ABB3 &arbol, long long x){
 void BaseFichero(){
 ifstream Archivo;fflush( stdin );
 Archivo.open("Parametros.txt",ios::app | ios::in);int c=0;string letra;string guardar;string x;
-Archivo>>letra;
-if(letra!=""){
 while(!Archivo.eof()){
-if(letra!="*"){
-guardar=guardar+" "+letra;
-}else{
-guardar = Espacio(guardar);    
-Fichero.push_back(guardar);
-guardar.clear();
-letra.clear();
-}
-Archivo >> letra;
-}
+    Archivo>>letra;
+    if(letra!="*" && letra!="|"){
+    guardar=guardar+" "+letra;
+    }if(letra=="*" && letra!="|" ){
+    guardar = Espacio(guardar);
+    B1.push_back(guardar);
+    guardar.clear();
+    }
 }
 Archivo.close();
 }
 void BaseArbol(){
-ifstream Archivo;string letra;string total;fflush( stdin );vector<string>v;
+fflush( stdin );
+ifstream Archivo;string letra;string total;
 Archivo.open("Empleados.txt",ios::in);
 while(!Archivo.eof()){
     Archivo>>letra;
@@ -196,25 +190,20 @@ while(!Archivo.eof()){
       }if(letra=="*" && letra!="|" ){
       total = Espacio(total);
       v.push_back(total);
+      cout<<total<<endl;
       total.clear();
     }
     if(letra=="|"){
-    B.push_back(v[0]);B.push_back(v[1]);
+    //cout<<"primero"<<endl;
+    B2.push_back(v[0]);B2.push_back(v[1]);
     for(int i=0;i<v.size();i++)cout<<v[i]<<endl;
-    
-    
-    
-    
-    
-    
-    
-    
-    v.clear();Fichero.errase(Fichero.begin()+0,Fichero.begin()+)
     }
-    
+    v.clear();//Fichero.errase(Fichero.begin()+0,Fichero.begin()+)
+    }
+  Archivo.close();  
 }
-Archivo.close();
-}
+
+
  
 void PreOrden(Empleados *&Arbol){
      if(Arbol!=NULL)
@@ -225,44 +214,6 @@ void PreOrden(Empleados *&Arbol){
      }
 }
 
-bool busquedaRec(Empleados *&Arbol, long long dato){
-     int r=0;   // 0 indica que lo encontre
-
-     if(Arbol==NULL)
-        return r;
-
-     if(dato<Arbol->Cedula)
-         r = busquedaRec(Arbol->izq, dato);
-
-     else if(dato>Arbol->Cedula)
-         r = busquedaRec(Arbol->der, dato);
-
-     else
-        r = 1;   // son iguales, lo encontre
-
-     return r;
-}
-void MOD(Empleados *&Arbol,long long x){
-    if(Arbol!=NULL)
-    {     
-          if( Arbol->Cedula == x ){            
-          cout<<"ESTE ES EL VALOR DE X : "<<x<<endl;getch();
-          }
-          MOD(Arbol->izq,x);
-          MOD(Arbol->der,x);
-    }
-}
-void Encontro(Empleados *&Arbol,long long x){
-    int P = busquedaRec(Arbol,x);
-    if(P==0){
-        system ("cls");
-        gotoxy(40,9);printf("I N G R E S O  N U M E R O  V A L I D O");
-        gotoxy(42,15);exit(1);    
-    }else{
-        MOD(Arbol, x);
-    }
-}
-
 
 bool busquedaRec(Empleados *&Arbol, long long dato){
      int r=0;   // 0 indica que lo encontre
@@ -301,12 +252,14 @@ void Encontro(Empleados *&Arbol,long long x){
         MOD(Arbol, x);
     }
 }
+
+
 
 
 int main(){
     fflush( stdin );fflush( stdin );fflush( stdin );
-    //BaseFichero();
-    BaseArbol();//for(int i=0;i<v.size();i++)cout<<v[i]<<endl;
+    BaseFichero();//for(int i=0;i<B1.size();i++)cout<<B1[i]<<endl;
+    BaseArbol();//
     //PreOrden(Abb1);
 	getch();
 }

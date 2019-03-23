@@ -173,14 +173,21 @@ while(!Archivo.eof()){
     guardar=guardar+" "+letra;
     }if(letra=="*" && letra!="|" ){
     guardar = Espacio(guardar);
-    B1.push_back(guardar);
+    Fichero.push_back(guardar);
     guardar.clear();
     }
-}
-Archivo.close();
+    }
+   Archivo.close();
+   for(int i=0;i<Fichero.size()/8;i++){
+       c = i*8;
+       B1.push_back(Fichero[c]);
+       c=c+1;
+       B1.push_back(Fichero[c]);
+       c=0;
+   }
 }
 void BaseArbol(){
-fflush( stdin );
+fflush( stdin );fflush( stdin );fflush( stdin );
 ifstream Archivo;string letra;string total;
 Archivo.open("Empleados.txt",ios::in);
 while(!Archivo.eof()){
@@ -190,15 +197,17 @@ while(!Archivo.eof()){
       }if(letra=="*" && letra!="|" ){
       total = Espacio(total);
       v.push_back(total);
-      cout<<total<<endl;
       total.clear();
     }
-    if(letra=="|"){
-    //cout<<"primero"<<endl;
-    B2.push_back(v[0]);B2.push_back(v[1]);
-    for(int i=0;i<v.size();i++)cout<<v[i]<<endl;
+     if(letra=="|"){
+      cout<<"A "<<v[0]<<endl;
+      cout<<"B "<<v[1]<<endl;
+    //  B2.push_back(v[0]);
+      //B2.push_back(v[1]);
+    v.clear();
     }
-    v.clear();//Fichero.errase(Fichero.begin()+0,Fichero.begin()+)
+//    v.clear();//Fichero.errase(Fichero.begin()+0,Fichero.begin()+)*/
+
     }
   Archivo.close();  
 }
@@ -253,13 +262,13 @@ void Encontro(Empleados *&Arbol,long long x){
     }
 }
 
-
-
-
 int main(){
     fflush( stdin );fflush( stdin );fflush( stdin );
-    BaseFichero();//for(int i=0;i<B1.size();i++)cout<<B1[i]<<endl;
-    BaseArbol();//
+    BaseFichero();
+    BaseArbol();
+    //for(int i=0;i<B2.size();i++)cout<<B2[i]<<endl;  
+    
+    
     //PreOrden(Abb1);
 	getch();
 }

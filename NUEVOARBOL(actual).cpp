@@ -163,10 +163,17 @@ string Espacio(string x){
     }
     return y;
 }
-int  Posicion(string x){
-   int c = 0 ;
-  for(int i=0;i<B2.size();i++){
-     if(B2[i]==x){
+int Parbol(int x,vector<string>b){
+    cout<<"ESTA ES LA EMPRRESA 1 : "<<b[x]<<endl;
+}
+int Posicion(string x,vector<string>b){
+   int a=0;cout<<<b.size()<<endl;
+  for(int i=0;i<b.size()/2;i++){
+     a = i*2;
+     if(b[a]==x){
+      //  a = a + 1 ;
+        cout<<"ESTA ES LA EMPRESA 1 : "<<b[a]<<endl; 
+      // Parbol(a,b);
        return i;
        exit(1);
     } 
@@ -200,7 +207,7 @@ while(!Archivo.eof()){
    }
 }
 void BaseArbol(){
-fflush( stdin );fflush( stdin );fflush( stdin );vector<string>v;
+fflush( stdin );vector<string>v;
 ifstream Archivo;string letra;string total;
 Archivo.open("Empleados.txt",ios::in);
 while(!Archivo.eof()){
@@ -213,29 +220,35 @@ while(!Archivo.eof()){
       total.clear();
      }
      if(letra=="|"){
+     fflush( stdin );cin.clear();
      if(v.size()!=0){B2.push_back(v[0]);B2.push_back(v[1]);}
-     int P = Posicion(v[0]);
-       if(P==-1){
+     int P = Posicion(v[0],B1);
+       if(P==-1 && v.size()!=0){ fflush( stdin );cin.clear();
        if(v[1]=="ECOPETROL EMPRESA A"){
-       InsertarEmpleados(Abb1 ,atoll(v[0].c_str()),atoll(v[5].c_str()),0,0,v[1],v[2],v[3],v[4],".",".");    
+       InsertarEmpleados(Abb1 ,atoll(v[0].c_str()),atoll(v[5].c_str()),0,0,v[1],v[2],v[3],v[4],".",".");
+      // cout<<"ARBOL 1* "<<" - "<<atoll(v[0].c_str())<<" - "<<atoll(v[5].c_str())<<" - "<<0<<" - "<<0<<" - "<<v[1]<<" - "<<v[2]<<" - "<<v[3]<<" - "<<v[4]<<" - "<<"."<<" - "<<"."<<endl;    
        }if(v[1]=="BAVARIA EMPRESA B"){
        InsertarEmpleados(Abb2 ,atoll(v[0].c_str()),atoll(v[5].c_str()),0,0,v[1],v[2],v[3],v[4],".","." );    
+      // cout<<"ARBOL 2* "<<" - "<<atoll(v[0].c_str())<<" - "<<atoll(v[5].c_str())<<" - "<<0<<" - "<<0<<" - "<<v[1]<<" - "<<v[2]<<" - "<<v[3]<<" - "<<v[4]<<" - "<<"."<<" - "<<"."<<endl;
        }if(v[1]=="CEMENTOS ARGOS EMPRESA C"){
-       InsertarEmpleados(Abb3 ,atoll(v[0].c_str()),atoll(v[5].c_str()),0,0,v[1],v[2],v[3],v[4],".",".");   
+     InsertarEmpleados(Abb3 ,atoll(v[0].c_str()),atoll(v[5].c_str()),0,0,v[1],v[2],v[3],v[4],".",".");   
+      /// cout<<"ARBOL 3* "<<" - "<<atoll(v[0].c_str())<<" - "<<atoll(v[5].c_str())<<" - "<<0<<" - "<<0<<" - "<<v[1]<<" - "<<v[2]<<" - "<<v[3]<<" - "<<v[4]<<" - "<<"."<<" - "<<"."<<endl;
        }   
-     }else{
+     }if(P!=-1){ fflush( stdin );cin.clear();
      if(v[1]=="ECOPETROL EMPRESA A"){
      InsertarEmpleados(Abb1 ,atoll(v[0].c_str()),atoll(v[5].c_str()),atoll(Fichero[P+7].c_str()),atoll(Fichero[P+6].c_str()),v[1],v[2],v[3],v[4],Fichero[P+4],Fichero[P+5]);    
+    // cout<<"ARBOL 1 "<<" - "<<atoll(v[0].c_str())<<" - "<<atoll(v[5].c_str())<<" - "<<atoll(Fichero[7].c_str())<<" - "<<atoll(Fichero[6].c_str())<<" - "<<v[1]<<" - "<<v[2]<<" - "<<v[3]<<" - "<<v[4]<<" - "<<Fichero[4]<<" - "<<Fichero[5]<<endl;     
      Fichero.erase(Fichero.begin()+P,Fichero.begin()+(P+8));
      }if(v[1]=="BAVARIA EMPRESA B"){
      InsertarEmpleados(Abb2 ,atoll(v[0].c_str()),atoll(v[5].c_str()),atoll(Fichero[7].c_str()),atoll(Fichero[6].c_str()),v[1],v[2],v[3],v[4],Fichero[4],Fichero[5] );    
+  //   cout<<"ARBOL 2 "<<" - "<<atoll(v[0].c_str())<<" - "<<atoll(v[5].c_str())<<" - "<<atoll(Fichero[7].c_str())<<" - "<<atoll(Fichero[6].c_str())<<" - "<<v[1]<<" - "<<v[2]<<" - "<<v[3]<<" - "<<v[4]<<" - "<<Fichero[4]<<" - "<<Fichero[5]<<endl;     
      Fichero.erase(Fichero.begin()+P,Fichero.begin()+(P+8));
      }if(v[1]=="CEMENTOS ARGOS EMPRESA C"){
      InsertarEmpleados(Abb3 ,atoll(v[0].c_str()),atoll(v[5].c_str()),atoll(Fichero[7].c_str()),atoll(Fichero[6].c_str()),v[1],v[2],v[3],v[4],Fichero[4],Fichero[5]);   
+    // cout<<"ARBOL 3 "<<" - "<<atoll(v[0].c_str())<<" - "<<atoll(v[5].c_str())<<" - "<<atoll(Fichero[7].c_str())<<" - "<<atoll(Fichero[6].c_str())<<" - "<<v[1]<<" - "<<v[2]<<" - "<<v[3]<<" - "<<v[4]<<" - "<<Fichero[4]<<" - "<<Fichero[5]<<endl;     
      Fichero.erase(Fichero.begin()+P,Fichero.begin()+(P+8));
      }   
      }
-    atoll(v[0].c_str()),atoll(v[5].c_str()),atoll(Fichero[7].c_str()),atoll(Fichero[6].c_str()),v[1],v[2],v[3],v[4],Fichero[4],Fichero[5]     
     v.clear();
     }
     }
@@ -245,9 +258,11 @@ while(!Archivo.eof()){
 
  
 void PreOrden(Empleados *&Arbol){
+     fflush( stdin );fflush( stdin );fflush( stdin );
      if(Arbol!=NULL)
      {
-           cout <<"{"<<Arbol->Cedula<<"}"<<" -> "<<"{"<<Arbol->Nombre<<"}"<<" -> "<<"{"<<Arbol->NombreEmpresa<<"}"<<" -> "<<"{"<<Arbol->FechaNacimiento<<"}"<<" -> "<<"{"<<Arbol->Departamento<<"}"<<" -> "<<"{"<<Arbol->Salario<<"}"<<endl;
+cout <<"{"<<Arbol->Cedula<<"}"<<" -> "<<"{"<<Arbol->Nombre<<"}"<<" -> "<<"{"<<Arbol->NombreEmpresa<<"}"<<" -> "<<"{"<<Arbol->FechaNacimiento<<"}"<<" -> "<<"{"<<Arbol->Departamento<<"}"<<" -> "<<"{"<<Arbol->Salario<<"}"<<" -> "
+<<"{"<<Arbol->Cod1<<"}"<<" -> "<<"{"<<Arbol->Cod2<<"}"<<" -> "<<"{"<<Arbol->Descuentos<<"}"<<" -> "<<"{"<<Arbol->Bonificaciones<<"}"<<endl;
            PreOrden(Arbol->izq);
            PreOrden(Arbol->der);
      }
@@ -275,7 +290,16 @@ void MOD(Empleados *&Arbol,long long x){
     if(Arbol!=NULL)
     {     
           if( Arbol->Cedula == x ){            
-          cout<<"ESTE ES EL VALOR DE X : "<<x<<endl;getch();
+            long long Cedula ;string Nombre ;string FechaNacimiento ;long long Salario;string Opcion;
+            gotoxy(70,8);  cout<<"SELECCIONE LOS DATOS DEL EMPLEADO QUE DESEA MODIFICAR";
+            gotoxy(87,11);  cout<<"0. CEDULA";
+            gotoxy(87,13);  cout<<"1. EMPRESA A DONDE LABORA";
+            gotoxy(87,15); cout<<"2. NOMBRE COMPLETO";
+            gotoxy(87,17); cout<<"3. FECHA DE NACIMIENTO";
+            gotoxy(87,19); cout<<"4. DEPARTAMENTO";
+            gotoxy(87,21); cout<<"5. SALARIO DEL EMPLEADO";
+            gotoxy(70,24);cout<<"Seleccione EL Departamento Deacuerdo Al Numero -> ";fflush( stdin );cin>>Opcion;
+          getch();
           }
           MOD(Arbol->izq,x);
           MOD(Arbol->der,x);
@@ -292,11 +316,28 @@ void Encontro(Empleados *&Arbol,long long x){
     }
 }
 
+
+
 int main(){
-    fflush( stdin );fflush( stdin );fflush( stdin );
+    fflush( stdin );fflush( stdin );fflush( stdin );string Cedula;
     BaseFichero();
-    BaseArbol();  
-  PreOrden(Abb1);
+    BaseArbol();
+    int P = Posicion("1081827159",B2);
+    
+    //for(int i=0;i<B2.size();i++) cout<<B2[i]<<endl;
+  
+  //PreOrden(Abb1);PreOrden(Abb2);PreOrden(Abb3);    
+    /*cout<<"Ingrese La Cedula Que Desea Modificar ";cin>>Cedula;cout<<endl;
+    int P = Posicion(Cedula,B2);
+    if(P!=-1){
+  //  Encontro(Empleados *&Arbol,long long x);
+     }else{
+      system("cls");
+      gotoxy(50,12);gotoxy(72,20);printf("::: LA CEDULA NO SE ENCUENTRA EN EL SISTEMA :::");
+      getch();
+      exit(1);
+    }*/
+  //  cout<<"Hola mundo"<<endl;
 	getch();
 }
 

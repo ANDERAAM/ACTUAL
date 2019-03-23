@@ -48,13 +48,13 @@ Empleados *CrearEmpleados(Empleados *&Arbol ,long long Cedula, long long Salario
     Empleado->izq                    =   NULL;
     return Empleado;
 }
-void InsertarEmpleados(Empleados *&Arbol,long long Cedula,long long Bonificaciones , long long Descuentos ,string Nombre ,string NombreEmpresa , string FechaNacimiento , string Departamento , long Salario,string Cod1 , string Cod2){
+void InsertarEmpleados(Empleados *&Arbol,long long Cedula,long long Salario,long long Bonificaciones , long long Descuentos ,string Nombre ,string NombreEmpresa , string FechaNacimiento , string Departamento ,string Cod1 , string Cod2){
  if   (Arbol == NULL){
       Arbol = CrearEmpleados(*&Arbol,Cedula,Salario,Bonificaciones,Descuentos ,Nombre ,NombreEmpresa ,FechaNacimiento ,Departamento ,Cod1,Cod2);
       }else if (Cedula < Arbol->Cedula) {
-      InsertarEmpleados(Arbol->izq,Cedula, Salario, Bonificaciones, Descuentos ,Nombre ,NombreEmpresa ,FechaNacimiento ,Departamento ,Cod1,Cod2);
+      InsertarEmpleados(*&Arbol->izq,Cedula,Salario,Bonificaciones,Descuentos ,Nombre ,NombreEmpresa ,FechaNacimiento ,Departamento ,Cod1,Cod2);
       }else if (Cedula > Arbol->Cedula) {
-      InsertarEmpleados(Arbol->der,Cedula,Salario,Bonificaciones,Descuentos ,Nombre ,NombreEmpresa ,FechaNacimiento ,Departamento ,Cod1,Cod2);
+      InsertarEmpleados(*&Arbol->der,Cedula,Salario,Bonificaciones,Descuentos ,Nombre ,NombreEmpresa ,FechaNacimiento ,Departamento ,Cod1,Cod2);
       }
 }
 

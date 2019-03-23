@@ -203,13 +203,12 @@ while(!Archivo.eof()){
     if(letra=="|"){
         fflush( stdin );
        B.push_back(v[0]);B.push_back(v[1]);
-      // InsertarEmpleados(*&Arbol->izq,Cedula,Salario,Bonificaciones,Descuentos ,Nombre ,NombreEmpresa ,FechaNacimiento ,Departamento ,Cod1,Cod2); 
         if(v[1]=="ECOPETROL EMPRESA A"){
-        InsertarEmpleados(Abb1 ,atoll(v[0].c_str()),v[1],v[2],v[3],v[4],atoll(v[5].c_str()) );    
+        InsertarEmpleados(Abb1 ,atoll(v[0].c_str()),atoll(v[5].c_str()),atoll(Fichero[7].c_str()),atoll(Fichero[6].c_str()),v[1],v[2],v[3],v[4],Fichero[4],Fichero[5]);    
         }if(v[1]=="BAVARIA EMPRESA B"){
-        InsertarEmpleados(Abb2 ,atoll(v[0].c_str()),v[1],v[2],v[3],v[4],atoll(v[5].c_str()) );    
+        InsertarEmpleados(Abb2 ,atoll(v[0].c_str()),atoll(v[5].c_str()),atoll(Fichero[7].c_str()),atoll(Fichero[6].c_str()),v[1],v[2],v[3],v[4],Fichero[4],Fichero[5] );    
         }if(v[1]=="CEMENTOS ARGOS EMPRESA C"){
-        InsertarEmpleados(Abb3 ,atoll(v[0].c_str()),v[1],v[2],v[3],v[4],atoll(v[5].c_str()) );   
+        InsertarEmpleados(Abb3 ,atoll(v[0].c_str()),atoll(v[5].c_str()),atoll(Fichero[7].c_str()),atoll(Fichero[6].c_str()),v[1],v[2],v[3],v[4],Fichero[4],Fichero[5]);   
     }
     v.clear();
 }
@@ -267,8 +266,16 @@ void Encontro(Empleados *&Arbol,long long x){
 int main(){
     BaseArbol();
     BaseFichero();
+    PreOrden(Abb1);
 	getch();
 }
+
+
+
+
+
+
+
 int arbol;string Departamento;string NombreEmpresa;string Opcion; int a=0 ;
 void Empresa1(){
 system("cls");cin.clear();fflush( stdin );

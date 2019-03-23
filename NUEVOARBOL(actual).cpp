@@ -29,7 +29,7 @@ ABB1 Abb1 = NULL;
 ABB2 Abb2 = NULL;
 ABB3 Abb3 = NULL;
 
-vector<string>B1;vector<string>B2;vector<string>Auxiliar;vector<string>Fichero;vector<string>v;
+vector<string>B1;vector<string>B2;vector<string>Auxiliar;vector<string>Fichero;
 
 Empleados *CrearEmpleados(Empleados *&Arbol ,long long Cedula, long long Salario,long long  Bonificaciones , long long Descuentos ,string Nombre ,string NombreEmpresa , string FechaNacimiento , string Departamento , string Cod1,string Cod2 ){
     Empleados *Empleado              =   new Empleados();
@@ -65,30 +65,6 @@ void gotoxy(int x,int y){
       dwPos.Y= y;
       SetConsoleCursorPosition(hcon,dwPos);
  }
-long long Convertir(string x){
-   int tam = x.size();string num;string total;
-   for(int i=0;i<tam;i++){
-   num = x.substr(i,1);
-   if( num=="0"| num=="1" || num=="2" || num=="3" || num=="4" || num=="5" || num=="6"  || num=="7" || num=="8" || num=="9"){
-   total=total+num;	
-   } 
-   }
-   if(x==total){
-   long long N = atoll(total.c_str());
-   return N;
-   }else{
-       system ("cls");
-       gotoxy(40,9);printf("I N G R E S E  U N  N U M E R O  V A L I D O ");
-       gotoxy(42,15);exit(1);
-   }
-}
-string Espacio(string x){
-    string y;
-    for(int i=1;i<x.size();i++){
-        y=y+x[i];
-    }
-    return y;
-}
 
 void CrearEmpleado();
 void Empresa1();
@@ -163,6 +139,43 @@ void EliminarABB3(ABB3 &arbol, long long x){
      }
 }
 
+long long Convertir(string x){
+   int tam = x.size();string num;string total;
+   for(int i=0;i<tam;i++){
+   num = x.substr(i,1);
+   if( num=="0"| num=="1" || num=="2" || num=="3" || num=="4" || num=="5" || num=="6"  || num=="7" || num=="8" || num=="9"){
+   total=total+num;	
+   } 
+   }
+   if(x==total){
+   long long N = atoll(total.c_str());
+   return N;
+   }else{
+       system ("cls");
+       gotoxy(40,9);printf("I N G R E S E  U N  N U M E R O  V A L I D O ");
+       gotoxy(42,15);exit(1);
+   }
+}
+string Espacio(string x){
+    string y;
+    for(int i=1;i<x.size();i++){
+        y=y+x[i];
+    }
+    return y;
+}
+int  Posicion(string x){
+   int c = 0 ;
+  for(int i=0;i<B2.size();i++){
+     if(B2[i]==x){
+       return i;
+       exit(1);
+    } 
+   }
+   return -1;
+     
+}
+
+
 
 void BaseFichero(){
 ifstream Archivo;fflush( stdin );
@@ -187,27 +200,44 @@ while(!Archivo.eof()){
    }
 }
 void BaseArbol(){
-fflush( stdin );fflush( stdin );fflush( stdin );
+fflush( stdin );fflush( stdin );fflush( stdin );vector<string>v;
 ifstream Archivo;string letra;string total;
 Archivo.open("Empleados.txt",ios::in);
 while(!Archivo.eof()){
-    Archivo>>letra;
+      Archivo>>letra;
       if(letra!="*" && letra!="|"){
       total=total+" "+letra;
       }if(letra=="*" && letra!="|" ){
       total = Espacio(total);
       v.push_back(total);
       total.clear();
-    }
+     }
      if(letra=="|"){
-      cout<<"A "<<v[0]<<endl;
-      cout<<"B "<<v[1]<<endl;
-    //  B2.push_back(v[0]);
-      //B2.push_back(v[1]);
+     if(v.size()!=0){B2.push_back(v[0]);B2.push_back(v[1]);}
+     int P = Posicion(v[0]);
+       if(P==-1){
+       if(v[1]=="ECOPETROL EMPRESA A"){
+       InsertarEmpleados(Abb1 ,atoll(v[0].c_str()),atoll(v[5].c_str()),0,0,v[1],v[2],v[3],v[4],".",".");    
+       }if(v[1]=="BAVARIA EMPRESA B"){
+       InsertarEmpleados(Abb2 ,atoll(v[0].c_str()),atoll(v[5].c_str()),0,0,v[1],v[2],v[3],v[4],".","." );    
+       }if(v[1]=="CEMENTOS ARGOS EMPRESA C"){
+       InsertarEmpleados(Abb3 ,atoll(v[0].c_str()),atoll(v[5].c_str()),0,0,v[1],v[2],v[3],v[4],".",".");   
+       }   
+     }else{
+     if(v[1]=="ECOPETROL EMPRESA A"){
+     InsertarEmpleados(Abb1 ,atoll(v[0].c_str()),atoll(v[5].c_str()),atoll(Fichero[P+7].c_str()),atoll(Fichero[P+6].c_str()),v[1],v[2],v[3],v[4],Fichero[P+4],Fichero[P+5]);    
+     Fichero.erase(Fichero.begin()+P,Fichero.begin()+(P+8));
+     }if(v[1]=="BAVARIA EMPRESA B"){
+     InsertarEmpleados(Abb2 ,atoll(v[0].c_str()),atoll(v[5].c_str()),atoll(Fichero[7].c_str()),atoll(Fichero[6].c_str()),v[1],v[2],v[3],v[4],Fichero[4],Fichero[5] );    
+     Fichero.erase(Fichero.begin()+P,Fichero.begin()+(P+8));
+     }if(v[1]=="CEMENTOS ARGOS EMPRESA C"){
+     InsertarEmpleados(Abb3 ,atoll(v[0].c_str()),atoll(v[5].c_str()),atoll(Fichero[7].c_str()),atoll(Fichero[6].c_str()),v[1],v[2],v[3],v[4],Fichero[4],Fichero[5]);   
+     Fichero.erase(Fichero.begin()+P,Fichero.begin()+(P+8));
+     }   
+     }
+    atoll(v[0].c_str()),atoll(v[5].c_str()),atoll(Fichero[7].c_str()),atoll(Fichero[6].c_str()),v[1],v[2],v[3],v[4],Fichero[4],Fichero[5]     
     v.clear();
     }
-//    v.clear();//Fichero.errase(Fichero.begin()+0,Fichero.begin()+)*/
-
     }
   Archivo.close();  
 }
@@ -265,11 +295,8 @@ void Encontro(Empleados *&Arbol,long long x){
 int main(){
     fflush( stdin );fflush( stdin );fflush( stdin );
     BaseFichero();
-    BaseArbol();
-    //for(int i=0;i<B2.size();i++)cout<<B2[i]<<endl;  
-    
-    
-    //PreOrden(Abb1);
+    BaseArbol();  
+  PreOrden(Abb1);
 	getch();
 }
 

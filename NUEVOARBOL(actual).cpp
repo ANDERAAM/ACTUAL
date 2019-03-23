@@ -187,33 +187,31 @@ Archivo >> letra;
 Archivo.close();
 }
 void BaseArbol(){
-ifstream Archivo;string letra;string total;vector<string> v;fflush( stdin );
+ifstream Archivo;string letra;string total;fflush( stdin );vector<string>v;
 Archivo.open("Empleados.txt",ios::in);
 while(!Archivo.eof()){
     Archivo>>letra;
       if(letra!="*" && letra!="|"){
       total=total+" "+letra;
-      //cout<<total<<endl;
       }if(letra=="*" && letra!="|" ){
       total = Espacio(total);
-      cout<<total<<endl;
       v.push_back(total);
       total.clear();
     }
     if(letra=="|"){
-    fflush( stdin );
-    
     B.push_back(v[0]);B.push_back(v[1]);
-//    for(int i=0;i<v.size();i++)cout<<v[i]<<endl;
-        /*if(v[1]=="ECOPETROL EMPRESA A"){
-        InsertarEmpleados(Abb1 ,atoll(v[0].c_str()),atoll(v[5].c_str()),atoll(Fichero[7].c_str()),atoll(Fichero[6].c_str()),v[1],v[2],v[3],v[4],Fichero[4],Fichero[5]);    
-        }if(v[1]=="BAVARIA EMPRESA B"){
-        InsertarEmpleados(Abb2 ,atoll(v[0].c_str()),atoll(v[5].c_str()),atoll(Fichero[7].c_str()),atoll(Fichero[6].c_str()),v[1],v[2],v[3],v[4],Fichero[4],Fichero[5] );    
-        }if(v[1]=="CEMENTOS ARGOS EMPRESA C"){
-        InsertarEmpleados(Abb3 ,atoll(v[0].c_str()),atoll(v[5].c_str()),atoll(Fichero[7].c_str()),atoll(Fichero[6].c_str()),v[1],v[2],v[3],v[4],Fichero[4],Fichero[5]);   
-    */
+    for(int i=0;i<v.size();i++)cout<<v[i]<<endl;
+    
+    
+    
+    
+    
+    
+    
+    
+    v.clear();Fichero.errase(Fichero.begin()+0,Fichero.begin()+)
     }
-    v.clear();
+    
 }
 Archivo.close();
 }
@@ -226,6 +224,45 @@ void PreOrden(Empleados *&Arbol){
            PreOrden(Arbol->der);
      }
 }
+
+bool busquedaRec(Empleados *&Arbol, long long dato){
+     int r=0;   // 0 indica que lo encontre
+
+     if(Arbol==NULL)
+        return r;
+
+     if(dato<Arbol->Cedula)
+         r = busquedaRec(Arbol->izq, dato);
+
+     else if(dato>Arbol->Cedula)
+         r = busquedaRec(Arbol->der, dato);
+
+     else
+        r = 1;   // son iguales, lo encontre
+
+     return r;
+}
+void MOD(Empleados *&Arbol,long long x){
+    if(Arbol!=NULL)
+    {     
+          if( Arbol->Cedula == x ){            
+          cout<<"ESTE ES EL VALOR DE X : "<<x<<endl;getch();
+          }
+          MOD(Arbol->izq,x);
+          MOD(Arbol->der,x);
+    }
+}
+void Encontro(Empleados *&Arbol,long long x){
+    int P = busquedaRec(Arbol,x);
+    if(P==0){
+        system ("cls");
+        gotoxy(40,9);printf("I N G R E S O  N U M E R O  V A L I D O");
+        gotoxy(42,15);exit(1);    
+    }else{
+        MOD(Arbol, x);
+    }
+}
+
 
 bool busquedaRec(Empleados *&Arbol, long long dato){
      int r=0;   // 0 indica que lo encontre

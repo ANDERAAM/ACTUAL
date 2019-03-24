@@ -354,10 +354,7 @@ bool busquedaRec(Empleados *&Arbol, long long dato){
         
         return r;
 }
-void MOD(Empleados *&Arbol,long long x){
-    if(Arbol!=NULL)
-    {     
-          if( Arbol->Cedula == x ){            
+void MOD(string Arbol,long long x){   
             long long Cedula ;string Nombre ;string FechaNacimiento ;long long Salario;string Opcion;string Numero;system("cls");int P;
             gotoxy(70,8);  cout<<"SELECCIONE LOS DATOS DEL EMPLEADO QUE DESEA MODIFICAR";
             gotoxy(87,11); cout<<"0. CEDULA";
@@ -374,14 +371,14 @@ void MOD(Empleados *&Arbol,long long x){
             else if(Opcion=="3"){system("cls");gotoxy(59,16);cout<<"INGRESE LA FECHA DE NACIMIENTO DEL NUEVO EMPLEADO : ";fflush( stdin );getline(cin,FechaNacimiento);Vacio(FechaNacimiento);Fecha(FechaNacimiento);Auxiliar[3]=FechaNacimiento;}
             else if(Opcion=="4"){system("cls");Departamento1();}
             else if(Opcion=="5"){system("cls");gotoxy(72,19);cout<<"INGRESE EL SALARIO DEL NUEVO EMPLEADO : ";fflush( stdin );getline(cin,Numero);Salario=Convertir(Numero);Auxiliar[5]=Numero;}
-          //  cout<<"HOLA MUNDO"<<endl;
+  
           for(int i=0;i<Auxiliar.size();i++) cout<<Auxiliar[i]<<endl;
+                
             getch();
-          }
-          MOD(Arbol->izq,x);
-          MOD(Arbol->der,x);
+
+  
     }
-  }    
+
 void Encontro(Empleados *&Arbol,long long x){
       int P = busquedaRec(Arbol,x);
         if(P==0){
@@ -389,8 +386,10 @@ void Encontro(Empleados *&Arbol,long long x){
         gotoxy(40,9);printf("I N G R E S O  N U M E R O  V A L I D O");
         gotoxy(42,15);exit(1);    
         }else{
+        string dato = itoa(x);
+        string arbol = Parbol(dato,B2);
         
-        MOD(Arbol, x);
+        MOD(arbol, x);
     }
 }
 

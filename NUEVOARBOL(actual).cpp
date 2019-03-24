@@ -246,7 +246,11 @@ if (letra==""){
     }
 
 }
-
+void EliminarTotal(string Arbol , string x){
+  if(Arbol=="Abb1")EliminarABB1(Abb1,Convertir(x));
+  if(Arbol=="Abb2")EliminarABB2(Abb2,Convertir(x));
+  if(Arbol=="Abb3")EliminarABB3(Abb3,Convertir(x));  
+}
 void BaseFichero(){
 ifstream Archivo;fflush( stdin );
 Archivo.open("Parametros.txt",ios::app | ios::in);int c=0;string letra;string guardar;string x;
@@ -371,10 +375,12 @@ void MOD(string Arbol,long long x){
             else if(Opcion=="3"){system("cls");gotoxy(59,16);cout<<"INGRESE LA FECHA DE NACIMIENTO DEL NUEVO EMPLEADO : ";fflush( stdin );getline(cin,FechaNacimiento);Vacio(FechaNacimiento);Fecha(FechaNacimiento);Auxiliar[3]=FechaNacimiento;}
             else if(Opcion=="4"){system("cls");Departamento1();}
             else if(Opcion=="5"){system("cls");gotoxy(72,19);cout<<"INGRESE EL SALARIO DEL NUEVO EMPLEADO : ";fflush( stdin );getline(cin,Numero);Salario=Convertir(Numero);Auxiliar[5]=Numero;}
-  
-          for(int i=0;i<Auxiliar.size();i++) cout<<Auxiliar[i]<<endl;
-                
+            //for(int i=0;i<Auxiliar.size();i++) cout<<" ["<<i<<"] "<<Auxiliar[i]<<endl;
+            if(Auxiliar[1]=="ECOPETROL EMPRESA A")InsertarEmpleados(Abb1 ,atoll(Auxiliar[0].c_str()),atoll(Auxiliar[5].c_str()),atoll(Auxiliar[9].c_str()),atoll(Auxiliar[8].c_str()),Auxiliar[2],Auxiliar[1],Auxiliar[3],Auxiliar[4],Auxiliar[6],Auxiliar[7]); 
+            if(Auxiliar[1]=="BAVARIA EMPRESA B")InsertarEmpleados(Abb2 ,atoll(Auxiliar[0].c_str()),atoll(Auxiliar[5].c_str()),atoll(Auxiliar[9].c_str()),atoll(Auxiliar[8].c_str()),Auxiliar[2],Auxiliar[1],Auxiliar[3],Auxiliar[4],Auxiliar[6],Auxiliar[7]); 
+            if(Auxiliar[1]=="CEMENTOS ARGOS EMPRESA C")InsertarEmpleados(Abb3 ,atoll(Auxiliar[0].c_str()),atoll(Auxiliar[5].c_str()),atoll(Auxiliar[9].c_str()),atoll(Auxiliar[8].c_str()),Auxiliar[2],Auxiliar[1],Auxiliar[3],Auxiliar[4],Auxiliar[6],Auxiliar[7]);  
             getch();
+//void InsertarEmpleados(Empleados *&Arbol,long long Cedula,long long Salario,long long Bonificaciones , long long Descuentos ,string Nombre ,string NombreEmpresa , string FechaNacimiento , string Departamento ,string Cod1 , string Cod2){
 
   
     }
@@ -388,7 +394,7 @@ void Encontro(Empleados *&Arbol,long long x){
         }else{
         string dato = itoa(x);
         string arbol = Parbol(dato,B2);
-        
+        EliminarTotal(arbol,dato);
         MOD(arbol, x);
     }
 }
@@ -411,7 +417,11 @@ int main(){
       getch();
       exit(-1); 
     }
-    
+    system("cls");
+    cout<<endl;
+    cout<<"ARBOL #1";cout<<endl;PreOrden(Abb1);cout<<endl;
+    cout<<"ARBOL #2";cout<<endl;PreOrden(Abb2);cout<<endl;
+    cout<<"ARBOL #3";cout<<endl;PreOrden(Abb3);cout<<endl;   
     
     //int P = Posicion("123000",B2);
   //  cout<<B2[P]<<" "<<P<<endl;

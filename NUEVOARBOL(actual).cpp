@@ -405,7 +405,8 @@ int main(){
     fflush( stdin );fflush( stdin );fflush( stdin );string Cedula;  Auxiliar.clear();
     BaseFichero();//for(int i=0;i<B1.size();i++)// cout<<" este es el valor de "<<B1[i]<<endl;
     BaseArbol();//Empresa1();
-    cout<<"Ingrese La Cedula Que Desea Modificar ";cin>>Cedula;cout<<endl;
+  CrearEmpleado();
+  /*  cout<<"Ingrese La Cedula Que Desea Modificar ";cin>>Cedula;cout<<endl;
     int P = Posicion(Cedula,B2);string Arbol = Parbol(Cedula,B2);
     if(P!=-1){
     if("Abb1"==Arbol){Encontro(Abb1,Convertir(B2[P])); }
@@ -439,13 +440,9 @@ int main(){
       getch();
       exit(1);
     }*/
-  //  cout<<"Hola mundo"<<endl;*/
+  //  cout<<"Hola mundo"<<endl;*/*/
 	getch();
 }
-
-
-
-
 
 
 
@@ -499,33 +496,28 @@ fflush( stdin );Departamento="CONTABILIDAD";
 Auxiliar[4]=Departamento;
 getch();
 }
-/*void CrearEm(){
+void CrearEmpleado(){
 Empresa1();
 Departamento1();
 system("cls");fflush( stdin );fflush( stdin );
 fflush( stdin );string Numero;long long Cedula;string Nombre ;string FechaNacimiento;string y;long long Salario;
 gotoxy(53,8); cout<<" I N G R E S E  L O S  D A T O S  D E L  N U E V O  E M P L E A D O";
 gotoxy(59,12); cout<<"INGRESE LA CEDULA DEL NUEVO EMPLEADO : ";fflush( stdin );cin>>Numero;Cedula=Convertir(Numero);
-if(VerificarCedula(y)==-1){
+if(Posicion(Numero,B2)==-1){
     system ("cls");
     gotoxy(65,20);printf("::: I N G R E S O  U N A  C E D U L A  N O  R E P E T I D A  :::");getch();
     gotoxy(42,15);exit(1);  
 }
 gotoxy(59,14); cout<<"INGRESE EL NOMBRE DEL NUEVO EMPLEADO : ";fflush( stdin );cin.clear();getline(cin,Nombre);Vacio(Nombre);
 gotoxy(59,16);cout<<"INGRESE LA FECHA DE NACIMEINTO DEL NUEVO EMPLEADO : ";fflush( stdin );cin.clear();getline(cin,FechaNacimiento);Vacio(FechaNacimiento);Fecha(FechaNacimiento);
-gotoxy(59,18);cout<<"INGRESE EL SALARIO DEL NUEVO EMPLEADO : ";fflush( stdin );cin>>Numero;y=validar(Numero);Salario=atoll(y.c_str());
+gotoxy(59,18);cout<<"INGRESE EL SALARIO DEL NUEVO EMPLEADO : ";fflush( stdin );cin>>Numero;Salario=Convertir(Numero);
 getch();
 fstream Archivo;
-Archivo.open("Empleado.txt",ios::app);
-Archivo<<Cedula<<" * "<<NombreEmpresa<<" * "<<Nombre<<" * "<<FechaNacimiento<<" * "<<Departamento<<" * "<<Salario<<" * "<<endl;
+Archivo.open("Empleados.txt",ios::app);
+Archivo<<Cedula<<" * "<<NombreEmpresa<<" * "<<Nombre<<" * "<<FechaNacimiento<<" * "<<Departamento<<" * "<<Salario<<" * "<<" | "<<endl;
 Archivo.close();
-system ("cls");
-gotoxy(72,20);printf("::: D A T O S  G U A R D A D O S  C O N  E X I T O :::");getch();
-gotoxy(42,15);exit(-1);
-	getch();
-BaseExtra();
 BaseArbol();
-}*/
+}
 
 
 

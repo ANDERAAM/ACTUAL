@@ -67,8 +67,8 @@ void gotoxy(int x,int y){
  }
 
 void CrearEmpleado();
-void Empresa1();
-void Departamento1();
+void Empresa1(int x);
+void Departamento1(int x);
 
 ABB1 unirABB1(ABB1 izq , ABB1 der){
     if(izq==NULL) return der;
@@ -144,39 +144,39 @@ string itoa(long long num){
   s<<num;
   return s.str();
  } 
-string validar(char num[]){
-for (int i = 0; i < strlen(num); i++){
-if(!isdigit(num[i]) ) {
-system ("cls");
-gotoxy(40,9);printf("I N G R E S E  U N  N U M E R O  V A L I D O ");
-gotoxy(42,15);exit(1);
-}
-}
-string y = num;
-return y;
-}
+ string validar(char num[]){
+ for (int i = 0; i < strlen(num); i++){
+ if(!isdigit(num[i]) ) {
+ system ("cls");
+ gotoxy(40,9);printf("I N G R E S E  U N  N U M E R O  V A L I D O ");
+ gotoxy(42,15);exit(1);
+ }
+ }
+ string y = num;
+ return y;
+ }
 void MesD(string mes , int dia,int anio){ 
-if((mes=="ENERO" || mes=="FEBRERO" || mes=="MARZO" || mes=="ABRIL" || mes=="MAYO" || mes=="NOVIEMBRE"
-||  mes=="JUNIO" || mes=="JULIO" ||  mes=="AGOSTO" || mes=="SEPTIEMBRE" || mes=="OCTUBRE" || mes=="DICIEMBRE") && anio>=1959 && anio<=2001){
-if( (mes=="FEBRERO" && (dia!=0 || dia<=28))  || mes=="FEBRERO" && (anio % 4 == 0 && (anio % 100 != 0 || anio % 400 == 0)) && (dia!=0 || dia<=29) ){
-}
-if( (mes=="ENERO" || mes=="MARZO" || mes=="MAYO" || mes=="AGOSTO" || mes=="JULIO" || mes=="OCTUBRE" || mes=="DICIEMBRE") && (dia!=0 || dia<=31) ){
-}
-if( (mes=="ABRIL" || mes=="JUNIO" || mes=="SEPTIEMBRE" || mes=="NOVIEMBRE") && (dia!=0 || dia<=30)){
-}
-}else{
+ if((mes=="ENERO" || mes=="FEBRERO" || mes=="MARZO" || mes=="ABRIL" || mes=="MAYO" || mes=="NOVIEMBRE"
+ ||  mes=="JUNIO" || mes=="JULIO" ||  mes=="AGOSTO" || mes=="SEPTIEMBRE" || mes=="OCTUBRE" || mes=="DICIEMBRE") && anio>=1959 && anio<=2001){
+ if( (mes=="FEBRERO" && (dia!=0 || dia<=28))  || mes=="FEBRERO" && (anio % 4 == 0 && (anio % 100 != 0 || anio % 400 == 0)) && (dia!=0 || dia<=29) ){
+ }
+ if( (mes=="ENERO" || mes=="MARZO" || mes=="MAYO" || mes=="AGOSTO" || mes=="JULIO" || mes=="OCTUBRE" || mes=="DICIEMBRE") && (dia!=0 || dia<=31) ){
+ }
+ if( (mes=="ABRIL" || mes=="JUNIO" || mes=="SEPTIEMBRE" || mes=="NOVIEMBRE") && (dia!=0 || dia<=30)){
+ }
+ }else{
 	 system ("cls");
             gotoxy(40,9);printf("INGRESE FECHA DE NACIMIENTO VALIDA");
             gotoxy(40,13);printf("ESCRIBA LA FECHA EN MAYUSCULA Y ESPACIOS COMO SE MUESTRA A CONTINUACION  : 21 DICIEMBRE 1996");
             cout<<endl;
             gotoxy(42,15);exit(1);
 
-}
-}
+ }
+ }
 void Fecha(string fecha){ 
-string dato[3];int dia,anio,contador=0;
-string a;
-for(int i=0;i<fecha.size();i++){
+ string dato[3];int dia,anio,contador=0;
+ string a;
+ for(int i=0;i<fecha.size();i++){
 	if(fecha[i]!=' '){
     a=a+fecha[i];
 	}else{
@@ -184,16 +184,17 @@ for(int i=0;i<fecha.size();i++){
 	contador++;
 	a.clear();
 	}
-}
-dato[2]=a;
-char* cadena1;char *cadena2;
-cadena1 = (char *)a.c_str();
-cadena2 = (char *)dato[0].c_str();
-validar(cadena1);
-validar(cadena2);
-anio = atoi(a.c_str());
-dia =  atoi(dato[0].c_str());
-MesD(dato[1],dia,anio);
+ }
+ dato[2]=a;
+ char* cadena1;char *cadena2;
+ cadena1 = (char *)a.c_str();
+ cadena2 = (char *)dato[0].c_str();
+ validar(cadena1);
+ validar(cadena2);
+ anio = atoi(a.c_str());
+ dia =  atoi(dato[0].c_str());
+ MesD(dato[1],dia,anio);
+
 }
 long long Convertir(string x){
    int tam = x.size();string num;string total;
@@ -239,7 +240,7 @@ string Parbol(string x,vector<string>b){
     return "-1";
 }
 void Vacio(string letra){
-if (letra==""){
+ if (letra==""){
       system ("cls");
       gotoxy(40,9);printf("C A M P O  V A C I O  E R R O R ");
       gotoxy(42,15);exit(1);
@@ -252,9 +253,9 @@ void EliminarTotal(string Arbol , string x){
   if(Arbol=="Abb3")EliminarABB3(Abb3,Convertir(x));  
 }
 void BaseFichero(){
-ifstream Archivo;fflush( stdin );
-Archivo.open("Parametros.txt",ios::app | ios::in);int c=0;string letra;string guardar;string x;
-while(!Archivo.eof()){
+ ifstream Archivo;fflush( stdin );
+ Archivo.open("Parametros.txt",ios::app | ios::in);int c=0;string letra;string guardar;string x;
+ while(!Archivo.eof()){
     Archivo>>letra;
     if(letra!="*" && letra!="|"){
     guardar=guardar+" "+letra;
@@ -274,10 +275,10 @@ while(!Archivo.eof()){
    }
 }
 void BaseArbol(){
-fflush( stdin );vector<string>v;
-ifstream Archivo;string letra;string total;
-Archivo.open("Empleados.txt",ios::in);
-while(!Archivo.eof()){
+  fflush( stdin );vector<string>v;
+ ifstream Archivo;string letra;string total;
+ Archivo.open("Empleados.txt",ios::in);
+ while(!Archivo.eof()){
       Archivo>>letra;
       if(letra!="*" && letra!="|"){
       total=total+" "+letra;
@@ -321,9 +322,6 @@ while(!Archivo.eof()){
     }
   Archivo.close();  
 }
-
-
- 
 void PreOrden(Empleados *&Arbol){
      fflush( stdin );fflush( stdin );fflush( stdin );
      if(Arbol!=NULL)
@@ -334,10 +332,6 @@ void PreOrden(Empleados *&Arbol){
            PreOrden(Arbol->der);
      }
 }
-
-void Empresa1();
-void Departamento1();
-
 bool busquedaRec(Empleados *&Arbol, long long dato){
      int r=0;   // 0 indica que lo encontre
 
@@ -357,7 +351,7 @@ bool busquedaRec(Empleados *&Arbol, long long dato){
         Auxiliar.push_back(itoa(Arbol->Descuentos));Auxiliar.push_back(itoa(Arbol->Bonificaciones));
         
         return r;
-}
+}   
 void MOD(string Arbol,long long x){   
             long long Cedula ;string Nombre ;string FechaNacimiento ;long long Salario;string Opcion;string Numero;system("cls");int P;
             gotoxy(70,8);  cout<<"SELECCIONE LOS DATOS DEL EMPLEADO QUE DESEA MODIFICAR";
@@ -367,24 +361,20 @@ void MOD(string Arbol,long long x){
             gotoxy(87,17); cout<<"3. FECHA DE NACIMIENTO";
             gotoxy(87,19); cout<<"4. DEPARTAMENTO";
             gotoxy(87,21); cout<<"5. SALARIO DEL EMPLEADO";
-            gotoxy(70,24);cout<<"Seleccione EL Departamento Deacuerdo Al Numero -> ";fflush( stdin );cin>>Opcion;//cout<<Opcion<<endl;getch();            if(Opcion=="0"){system("cls");
-            if(Opcion=="0"){system("cls");gotoxy(72,19); cout<<"INGRESE LA CEDULA DEL NUEVO EMPLEADO : ";fflush( stdin );cin>>Numero;P=Posicion(Numero,B2);Cedula = Convertir(Numero);
+            gotoxy(70,24);cout<<"Seleccione EL Departamento Deacuerdo Al Numero -> ";cin>>Opcion;//cout<<Opcion<<endl;getch();            if(Opcion=="0"){system("cls");
+            if(Opcion=="0"){system("cls");gotoxy(72,19); cout<<"INGRESE LA CEDULA DEL NUEVO EMPLEADO : ";cin>>Numero;P=Posicion(Numero,B2);Cedula = Convertir(Numero);
             if(P!=-1){system("cls");gotoxy(50,12);printf("I N G R E S E  U N A  C E D U L A  N O  R E P E T I D A");getch();exit(1);}else{Auxiliar[0]=Numero;}}
-            else if(Opcion=="1"){system("cls");Empresa1();}
-            else if(Opcion=="2"){system("cls");gotoxy(72,19); cout<<"INGRESE EL NOMBRE DEL NUEVO EMPLEADO : ";fflush( stdin );getline(cin,Nombre);Vacio(Nombre);Auxiliar[2]=Nombre;}
-            else if(Opcion=="3"){system("cls");gotoxy(59,16);cout<<"INGRESE LA FECHA DE NACIMIENTO DEL NUEVO EMPLEADO : ";fflush( stdin );getline(cin,FechaNacimiento);Vacio(FechaNacimiento);Fecha(FechaNacimiento);Auxiliar[3]=FechaNacimiento;}
-            else if(Opcion=="4"){system("cls");Departamento1();}
-            else if(Opcion=="5"){system("cls");gotoxy(72,19);cout<<"INGRESE EL SALARIO DEL NUEVO EMPLEADO : ";fflush( stdin );getline(cin,Numero);Salario=Convertir(Numero);Auxiliar[5]=Numero;}
+            else if(Opcion=="1"){system("cls");Empresa1(1);}
+            else if(Opcion=="2"){system("cls");gotoxy(72,19); cout<<"INGRESE EL NOMBRE DEL NUEVO EMPLEADO : ";getline(cin,Nombre);Vacio(Nombre);Auxiliar[2]=Nombre;}
+            else if(Opcion=="3"){system("cls");gotoxy(59,16);cout<<"INGRESE LA FECHA DE NACIMIENTO DEL NUEVO EMPLEADO : ";getline(cin,FechaNacimiento);Vacio(FechaNacimiento);Fecha(FechaNacimiento);Auxiliar[3]=FechaNacimiento;}
+            else if(Opcion=="4"){system("cls");Departamento1(1);}
+            else if(Opcion=="5"){system("cls");gotoxy(72,19);cout<<"INGRESE EL SALARIO DEL NUEVO EMPLEADO : ";getline(cin,Numero);Salario=Convertir(Numero);Auxiliar[5]=Numero;}
             //for(int i=0;i<Auxiliar.size();i++) cout<<" ["<<i<<"] "<<Auxiliar[i]<<endl;
             if(Auxiliar[1]=="ECOPETROL EMPRESA A")InsertarEmpleados(Abb1 ,atoll(Auxiliar[0].c_str()),atoll(Auxiliar[5].c_str()),atoll(Auxiliar[9].c_str()),atoll(Auxiliar[8].c_str()),Auxiliar[2],Auxiliar[1],Auxiliar[3],Auxiliar[4],Auxiliar[6],Auxiliar[7]); 
             if(Auxiliar[1]=="BAVARIA EMPRESA B")InsertarEmpleados(Abb2 ,atoll(Auxiliar[0].c_str()),atoll(Auxiliar[5].c_str()),atoll(Auxiliar[9].c_str()),atoll(Auxiliar[8].c_str()),Auxiliar[2],Auxiliar[1],Auxiliar[3],Auxiliar[4],Auxiliar[6],Auxiliar[7]); 
             if(Auxiliar[1]=="CEMENTOS ARGOS EMPRESA C")InsertarEmpleados(Abb3 ,atoll(Auxiliar[0].c_str()),atoll(Auxiliar[5].c_str()),atoll(Auxiliar[9].c_str()),atoll(Auxiliar[8].c_str()),Auxiliar[2],Auxiliar[1],Auxiliar[3],Auxiliar[4],Auxiliar[6],Auxiliar[7]);  
-            getch();
-//void InsertarEmpleados(Empleados *&Arbol,long long Cedula,long long Salario,long long Bonificaciones , long long Descuentos ,string Nombre ,string NombreEmpresa , string FechaNacimiento , string Departamento ,string Cod1 , string Cod2){
-
-  
+            getch();  
     }
-
 void Encontro(Empleados *&Arbol,long long x){
       int P = busquedaRec(Arbol,x);
         if(P==0){
@@ -399,125 +389,128 @@ void Encontro(Empleados *&Arbol,long long x){
     }
 }
 
+int a1 = 1 , b1 = 4, c1=32 , d1 = 4,a2 = 70 , b2 = 4, c2=103 , d2 = 4;
+int a3 = 140 , b3 = 4,a4 = 170 , b4 = 4;  
+
+void Mostrar(Empleados *&Arbol){
+     fflush( stdin );fflush( stdin );fflush( stdin );
+     if(Arbol!=NULL)
+     {
+    gotoxy(a1,b1);cout<<Arbol->Cedula;
+    gotoxy(c1,d1);cout<<Arbol->NombreEmpresa;
+    gotoxy(a2,b2);cout<<Arbol->Nombre;
+    gotoxy(c2,d2);cout<<Arbol->FechaNacimiento;
+    gotoxy(a3,b3);cout<<Arbol->Departamento;
+    gotoxy(a4,b4);cout<<Arbol->Salario;
+    cout<<endl;  
+    b1++;d1++;b2++;d2++;b3++,b4++;   
+    Mostrar(Arbol->izq);
+    Mostrar(Arbol->der);     
+     }
+}
+MostrarTotal(){
+  gotoxy(1,2);cout<<"CEDULA (CODIGO)";
+  gotoxy(32,2);cout<<"NOMBRE DE LA EMPRESA";
+  gotoxy(70,2);cout<<"NOMBRE COMPLETO";
+  gotoxy(103,2);cout<<"FECHA DE NACIMIENTO";
+  gotoxy(140,2);cout<<"DEPARTAMENTO";
+  gotoxy(170,2);cout<<"SALARIO BASE";
+ Mostrar(Abb1);Mostrar(Abb2);Mostrar(Abb3);
+}
+
+
 
 
 int main(){
-    fflush( stdin );fflush( stdin );fflush( stdin );string Cedula;  Auxiliar.clear();
-    BaseFichero();//for(int i=0;i<B1.size();i++)// cout<<" este es el valor de "<<B1[i]<<endl;
-    BaseArbol();//Empresa1();
-  CrearEmpleado();
-  /*  cout<<"Ingrese La Cedula Que Desea Modificar ";cin>>Cedula;cout<<endl;
-    int P = Posicion(Cedula,B2);string Arbol = Parbol(Cedula,B2);
-    if(P!=-1){
-    if("Abb1"==Arbol){Encontro(Abb1,Convertir(B2[P])); }
-    if("Abb2"==Arbol){Encontro(Abb2,Convertir(B2[P])); }
-    if("Abb3"==Arbol){Encontro(Abb3,Convertir(B2[P])); }
-    }else{
-      system("cls");
-      gotoxy(50,12);gotoxy(72,20);printf("::: LA CEDULA NO SE ENCUENTRA EN EL SISTEMA :::");
-      getch();
-      exit(-1); 
-    }
-    system("cls");
-    cout<<endl;
-    cout<<"ARBOL #1";cout<<endl;PreOrden(Abb1);cout<<endl;
-    cout<<"ARBOL #2";cout<<endl;PreOrden(Abb2);cout<<endl;
-    cout<<"ARBOL #3";cout<<endl;PreOrden(Abb3);cout<<endl;   
-    
-    //int P = Posicion("123000",B2);
-  //  cout<<B2[P]<<" "<<P<<endl;
-    
-    
-  
-  //PreOrden(Abb1);PreOrden(Abb2);PreOrden(Abb3);    
-    /*cout<<"Ingrese La Cedula Que Desea Modificar ";cin>>Cedula;cout<<endl;
-    int P = Posicion(Cedula,B2);
-    if(P!=-1){
-  //  Encontro(Empleados *&Arbol,long long x);
-     }else{
-      system("cls");
-      gotoxy(50,12);gotoxy(72,20);printf("::: LA CEDULA NO SE ENCUENTRA EN EL SISTEMA :::");
-      getch();
-      exit(1);
-    }*/
-  //  cout<<"Hola mundo"<<endl;*/*/
-	getch();
+  system("cls");cin.clear();
+  BaseFichero();BaseArbol();
+  MostrarTotal();
+  getch();
 }
-
 
 
 int arbol;string Departamento;string NombreEmpresa;int Opcion=1; int a=0 ;
-void Empresa1(){
-system("cls");cin.clear();fflush( stdin );
-gotoxy(65,8);cout<<"SELECCIONE LA EMPRESA QUE VA A AFILIAR AL EMPLEADO";
-gotoxy(75,11); cout<<"1. EMPRESA A (ECOPETROL)";
-gotoxy(75,13); cout<<"2. EMPRESA B (BAVARIA)";
-gotoxy(75,15); cout<<"3. EMPRESA C  (CEMENTOS ARGOS)";
-gotoxy(68,17);cout<<"Seleccione La Empresa Deacuerdo Al Numero -> ";fflush( stdin );cin.clear();cin>>Opcion;
-if(Opcion==1){
-fflush( stdin );NombreEmpresa="ECOPETROL EMPRESA A";//cout<<NombreEmpresa<<endl;getch();
-}else if(Opcion==2){
-fflush( stdin );NombreEmpresa="BAVARIA EMPRESA B";
-}else if(Opcion==3){
-fflush( stdin );NombreEmpresa="CEMENTOS ARGOS EMPRESA C";
-}else{
+
+void Empresa1(int x){
+ system("cls");cin.clear();fflush( stdin );
+ gotoxy(65,8);cout<<"SELECCIONE LA EMPRESA QUE VA A AFILIAR AL EMPLEADO";
+ gotoxy(75,11); cout<<"1. EMPRESA A (ECOPETROL)";
+ gotoxy(75,13); cout<<"2. EMPRESA B (BAVARIA)";
+ gotoxy(75,15); cout<<"3. EMPRESA C  (CEMENTOS ARGOS)";
+ gotoxy(68,17);cout<<"Seleccione La Empresa Deacuerdo Al Numero -> ";cin>>Opcion;cin.ignore();
+ if(Opcion==1){
+ NombreEmpresa="ECOPETROL EMPRESA A";//cout<<NombreEmpresa<<endl;getch();
+ }else if(Opcion==2){
+ NombreEmpresa="BAVARIA EMPRESA B";
+ }else if(Opcion==3){
+ NombreEmpresa="CEMENTOS ARGOS EMPRESA C";
+ }else{
     system ("cls");
     gotoxy(72,20);printf("::: I N G R E S O  N U M E R O  V A L I D O :::");getch();
-    gotoxy(42,15);exit(-1);
-}
-Auxiliar[1]=NombreEmpresa;
-arbol=1;
-getch();
-}
-void Departamento1(){
-system("cls");cin.clear();fflush( stdin );
-gotoxy(62,8);  cout<<" SELECCIONE EL DEPARTAMENTO QUE VA A TRABAJAR EL EMPLEADO ";
-gotoxy(83,11); cout<<"1. SISTEMA";
-gotoxy(83,13); cout<<"2. NOMINA";
-gotoxy(83,15); cout<<"3. GESTION HUMANA";
-gotoxy(83,17); cout<<"4. PRODUCCION";
-gotoxy(83,19); cout<<"5. CONTABILIDAD";
-gotoxy(65,22); cout<<"Seleccione EL Departamento Deacuerdo Al Numero -> ";fflush( stdin );cin>>Opcion;
-if(Opcion==1){
-fflush( stdin );Departamento="SISTEMA";
-}else if(Opcion==2){
-fflush( stdin );Departamento="NOMINA";
-}else if(Opcion==3){
-fflush( stdin );Departamento="GESTION HUMANA";
-}else if(Opcion==4){
-fflush( stdin );Departamento="PRODUCCION";
-}else if(Opcion==5){
-fflush( stdin );Departamento="CONTABILIDAD";
-}else{
+    gotoxy(42,15);
+ }
+ //Auxiliar.insert(Auxiliar.begin()+1, NombreEmpresa);
+ if(x==1)Auxiliar[1]=NombreEmpresa;
+ arbol=1;
+  }
+
+void Departamento1(int x){
+ system("cls");cin.clear();fflush( stdin );
+ gotoxy(62,8);  cout<<" SELECCIONE EL DEPARTAMENTO QUE VA A TRABAJAR EL EMPLEADO ";
+ gotoxy(83,11); cout<<"1. SISTEMA";
+ gotoxy(83,13); cout<<"2. NOMINA";
+ gotoxy(83,15); cout<<"3. GESTION HUMANA";
+ gotoxy(83,17); cout<<"4. PRODUCCION";
+ gotoxy(83,19); cout<<"5. CONTABILIDAD";
+ gotoxy(65,22); cout<<"Seleccione EL Departamento Deacuerdo Al Numero -> ";cin>>Opcion;
+ if(Opcion==1){
+ fflush( stdin );Departamento="SISTEMA";
+ }else if(Opcion==2){
+ fflush( stdin );Departamento="NOMINA";
+ }else if(Opcion==3){
+ fflush( stdin );Departamento="GESTION HUMANA";
+ }else if(Opcion==4){
+ fflush( stdin );Departamento="PRODUCCION";
+ }else if(Opcion==5){
+ fflush( stdin );Departamento="CONTABILIDAD";
+ }else{
     system ("cls");
     gotoxy(72,20);printf("::: I N G R E S O  N U M E R O  V A L I D O :::");getch();
-    gotoxy(42,15);exit(-1);    
+    gotoxy(42,15);  
+ }
+ if(x==1)Auxiliar[4]=Departamento;
 }
-Auxiliar[4]=Departamento;
-getch();
-}
+
 void CrearEmpleado(){
-Empresa1();
-Departamento1();
-system("cls");fflush( stdin );fflush( stdin );
-fflush( stdin );string Numero;long long Cedula;string Nombre ;string FechaNacimiento;string y;long long Salario;
-gotoxy(53,8); cout<<" I N G R E S E  L O S  D A T O S  D E L  N U E V O  E M P L E A D O";
-gotoxy(59,12); cout<<"INGRESE LA CEDULA DEL NUEVO EMPLEADO : ";fflush( stdin );cin>>Numero;Cedula=Convertir(Numero);
-if(Posicion(Numero,B2)==-1){
-    system ("cls");
-    gotoxy(65,20);printf("::: I N G R E S O  U N A  C E D U L A  N O  R E P E T I D A  :::");getch();
-    gotoxy(42,15);exit(1);  
-}
-gotoxy(59,14); cout<<"INGRESE EL NOMBRE DEL NUEVO EMPLEADO : ";fflush( stdin );cin.clear();getline(cin,Nombre);Vacio(Nombre);
-gotoxy(59,16);cout<<"INGRESE LA FECHA DE NACIMEINTO DEL NUEVO EMPLEADO : ";fflush( stdin );cin.clear();getline(cin,FechaNacimiento);Vacio(FechaNacimiento);Fecha(FechaNacimiento);
-gotoxy(59,18);cout<<"INGRESE EL SALARIO DEL NUEVO EMPLEADO : ";fflush( stdin );cin>>Numero;Salario=Convertir(Numero);
-getch();
-fstream Archivo;
-Archivo.open("Empleados.txt",ios::app);
-Archivo<<Cedula<<" * "<<NombreEmpresa<<" * "<<Nombre<<" * "<<FechaNacimiento<<" * "<<Departamento<<" * "<<Salario<<" * "<<" | "<<endl;
-Archivo.close();
-BaseArbol();
-}
+   Empresa1(0);Departamento1(0);
+    system("cls");
+    fflush( stdin );string Numero;long long Cedula;string Nombre ;string FechaNacimiento;string y;long long Salario;
+    gotoxy(53,8); cout<<" I N G R E S E  L O S  D A T O S  D E L  N U E V O  E M P L E A D O";
+    gotoxy(59,12); cout<<"INGRESE LA CEDULA DEL NUEVO EMPLEADO : ";cin>>Numero;Cedula=Convertir(Numero);
+    if(Posicion(Numero,B2)==-1){
+        system ("cls");
+        gotoxy(65,20);printf("::: I N G R E S O  U N A  C E D U L A  N O  R E P E T I D A  :::");getch();
+        gotoxy(42,15);exit(1);  
+    }
+    gotoxy(59,14); cout<<"INGRESE EL NOMBRE DEL NUEVO EMPLEADO : ";getline(cin,Nombre);Vacio(Nombre);
+    gotoxy(59,16);cout<<"INGRESE LA FECHA DE NACIMEINTO DEL NUEVO EMPLEADO : ";getline(cin,FechaNacimiento);Vacio(FechaNacimiento);Fecha(FechaNacimiento);
+    gotoxy(59,18);cout<<"INGRESE EL SALARIO DEL NUEVO EMPLEADO : ";cin>>Numero;Salario=Convertir(Numero);
+    getch();
+    fstream Archivo;
+    Archivo.open("Empleados.txt",ios::app);
+    Archivo<<Cedula<<" * "<<NombreEmpresa<<" * "<<Nombre<<" * "<<FechaNacimiento<<" * "<<Departamento<<" * "<<Salario<<" * "<<" | "<<endl;
+    Archivo.close();}
+
+
+
+
+
+
+
+
+
+
+
 
 
 

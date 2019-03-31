@@ -222,17 +222,12 @@ string Espacio(string x){
 }
 int Posicion(string x,vector<string>b){
    fflush( stdin );int a=0;
-  for(int i=0;i<b.size();i++){
+  for(int i=0;i<b.size()/2;i++){
      a = i*2;
-    // cout<<"\n"<<"ESTOS SON LOS VALORES B : "<<b[a]<<endl;
      if(b[a]==x){
-       cout<<"\n"<<"ESTOS SON LOS VALORES IGUALES : "<<b[a]<<endl;  getch();
-       return a;
-       //exit(1);
+       return 0;
     }
-
    }
-   getch();
    return -1;
      
 }
@@ -548,7 +543,7 @@ void InsertarEmpleado(){
     fflush( stdin );string Numero;long long Cedula;string Nombre ;string FechaNacimiento;string y;long long Salario;
     gotoxy(65,13); cout<<"INGRESE LA CEDULA DEL NUEVO EMPLEADO : ";fflush( stdin );cin>>Numero;Cedula=Convertir(Numero);cin.ignore();
     cout<<"\n"<<"Numero : "<<Numero<<"\n";getch();
-    if(Posicion(Numero,B2)==-1){
+    if(Posicion(Numero,B2)!=-1){
     system ("cls");
     gotoxy(65,20);printf("::: I N G R E S O  U N A  C E D U L A  N O  R E P E T I D A  :::");getch();
     gotoxy(42,15);exit(1);  

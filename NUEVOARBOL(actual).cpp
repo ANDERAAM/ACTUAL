@@ -275,7 +275,7 @@ void BaseFichero(){
 }
 void BaseArbol(){
   fflush( stdin );vector<string>v;
- ifstream Archivo;string letra;string total;
+ ifstream Archivo;string letra;string total;B2.clear();
  Archivo.open("Empleados.txt",ios::in);
  while(!Archivo.eof()){
       Archivo>>letra;
@@ -388,13 +388,13 @@ void Encontro(Empleados *&Arbol,long long x){
     }
 }
 
-int a1 = 1 , b1 = 4, c1=32 , d1 = 4,a2 = 70 , b2 = 4, c2=103 , d2 = 4;
-int a3 = 140 , b3 = 4,a4 = 170 , b4 = 4;  
+int a1 = 1+2+2 , b1 = 4+3, c1=32 , d1 = 4+3,a2 = 70 , b2 = 4+3, c2=103 , d2 = 4+3;
+int a3 = 140 , b3 = 4+3,a4 = 170 , b4 = 4+3;  
 
 void Mostrar(Empleados *&Arbol){
-     fflush( stdin );fflush( stdin );fflush( stdin );
-     if(Arbol!=NULL)
-     {
+    fflush( stdin );fflush( stdin );fflush( stdin );
+    if(Arbol!=NULL)
+    {
     gotoxy(a1,b1);cout<<Arbol->Cedula;
     gotoxy(c1,d1);cout<<Arbol->NombreEmpresa;
     gotoxy(a2,b2);cout<<Arbol->Nombre;
@@ -408,12 +408,12 @@ void Mostrar(Empleados *&Arbol){
      }
 }
 MostrarTotal(){
-  gotoxy(1,2);cout<<"CEDULA (CODIGO)";
-  gotoxy(32,2);cout<<"NOMBRE DE LA EMPRESA";
-  gotoxy(70,2);cout<<"NOMBRE COMPLETO";
-  gotoxy(103,2);cout<<"FECHA DE NACIMIENTO";
-  gotoxy(140,2);cout<<"DEPARTAMENTO";
-  gotoxy(170,2);cout<<"SALARIO BASE";
+  gotoxy(1+2,2+3);cout<<"CEDULA (CODIGO)";
+  gotoxy(32,2+3);cout<<"NOMBRE DE LA EMPRESA";
+  gotoxy(70,2+3);cout<<"NOMBRE COMPLETO";
+  gotoxy(103,2+3);cout<<"FECHA DE NACIMIENTO";
+  gotoxy(140,2+3);cout<<"DEPARTAMENTO";
+  gotoxy(170,2+3);cout<<"SALARIO BASE";
  Mostrar(Abb1);Mostrar(Abb2);Mostrar(Abb3);
 }
 void Ventana(){
@@ -429,18 +429,7 @@ int main(){
   system("cls");cin.clear();fflush( stdin );
   BaseFichero();
   BaseArbol();
-//  MostrarTotal();
- InsertarEmpleado();
-  
-  //for(int i=0;i<B1.size();i++)cout<<"ESTE ES EL VALOR DE B1 : "<<B1[i]<<"  ";
-  cout<<endl;
-  //for(int i=0;i<B1.size();i++)cout<<"ESTE ES EL VALOR DE B1 : "<<B1[i]<<"  "<<endl;
-  
-//  MostrarTotal();
-//  Menu();
-//Empresa1(0);
-  //Departamento1(0);
-  //CrearEmpleado();
+  Menu();
   getch();
 }
 
@@ -458,9 +447,16 @@ void Menu(){
  gotoxy(c,d+14);cout<<"8. SALIR";
  gotoxy(c,d+16);cout<<"Elija una opcion..: ";cin>>i;
  if(i==1){
+ system("cls");
  InsertarEmpleado(); 
  }else if(i==2){
-  
+ system("cls");
+ //gotoxy(65,0);cout<<"____________________________________________________________";
+ //gotoxy(65+18,2);cout<<"SISTEMA NOMINA V2.0";
+ //gotoxy(65,2.5);cout<<"____________________________________________________________"; 
+ MostrarTotal();
+ cout<<endl<<endl;long long Cedula;
+ cout<<"Porfavor Ingrese La Cedula Que Desee Modificar : ";cin>>Cedula;
  }else if(i==3){
   
  }else if(i==4){
@@ -542,7 +538,6 @@ void InsertarEmpleado(){
     gotoxy(84,8);cout<<"| CREAR EMPLEADO |";
     fflush( stdin );string Numero;long long Cedula;string Nombre ;string FechaNacimiento;string y;long long Salario;
     gotoxy(65,13); cout<<"INGRESE LA CEDULA DEL NUEVO EMPLEADO : ";fflush( stdin );cin>>Numero;Cedula=Convertir(Numero);cin.ignore();
-    cout<<"\n"<<"Numero : "<<Numero<<"\n";getch();
     if(Posicion(Numero,B2)!=-1){
     system ("cls");
     gotoxy(65,20);printf("::: I N G R E S O  U N A  C E D U L A  N O  R E P E T I D A  :::");getch();

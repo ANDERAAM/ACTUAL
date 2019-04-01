@@ -388,8 +388,8 @@ void Encontro(Empleados *&Arbol,long long x){
     }
 }
 
-int a1 = 1+2+2 , b1 = 4+3, c1=32 , d1 = 4+3,a2 = 70 , b2 = 4+3, c2=103 , d2 = 4+3;
-int a3 = 140 , b3 = 4+3,a4 = 170 , b4 = 4+3;  
+int a1 = 5 , b1 = 22, c1=32 , d1 = 22,a2 = 70 , b2 = 22, c2=103 , d2 = 22;
+int a3 = 140 , b3 = 22,a4 = 170 , b4 = 22;  
 
 void Mostrar(Empleados *&Arbol){
     fflush( stdin );fflush( stdin );fflush( stdin );
@@ -408,12 +408,12 @@ void Mostrar(Empleados *&Arbol){
      }
 }
 MostrarTotal(){
-  gotoxy(1+2,2+3);cout<<"CEDULA (CODIGO)";
-  gotoxy(32,2+3);cout<<"NOMBRE DE LA EMPRESA";
-  gotoxy(70,2+3);cout<<"NOMBRE COMPLETO";
-  gotoxy(103,2+3);cout<<"FECHA DE NACIMIENTO";
-  gotoxy(140,2+3);cout<<"DEPARTAMENTO";
-  gotoxy(170,2+3);cout<<"SALARIO BASE";
+  gotoxy(a1,b1-2);cout<<"CEDULA (CODIGO)";
+  gotoxy(c1,d1-2);cout<<"NOMBRE DE LA EMPRESA";
+  gotoxy(a2,b2-2);cout<<"NOMBRE COMPLETO";
+  gotoxy(c2,d2-2);cout<<"FECHA DE NACIMIENTO";
+  gotoxy(a3,b3-2);cout<<"DEPARTAMENTO";
+  gotoxy(a4,b4-2);cout<<"SALARIO BASE";
  Mostrar(Abb1);Mostrar(Abb2);Mostrar(Abb3);
 }
 void Ventana(){
@@ -451,12 +451,16 @@ void Menu(){
  InsertarEmpleado(); 
  }else if(i==2){
  system("cls");
- //gotoxy(65,0);cout<<"____________________________________________________________";
- //gotoxy(65+18,2);cout<<"SISTEMA NOMINA V2.0";
- //gotoxy(65,2.5);cout<<"____________________________________________________________"; 
+ long long Cedula;
+ gotoxy(50,16);cout<<" ::: BASE DE DATOS ACTUALIZADA DE TODOS LOS EMPLEADOS DE LAS DIFERENTES EMPRESAS ::: ";
  MostrarTotal();
- cout<<endl<<endl;long long Cedula;
- cout<<"Porfavor Ingrese La Cedula Que Desee Modificar : ";cin>>Cedula;
+ gotoxy(65,1);cout<<"____________________________________________________________";
+ gotoxy(85,3);cout<<"SISTEMA NOMINA V2.0";
+ gotoxy(65,4);cout<<"____________________________________________________________"; 
+ gotoxy(80,6);cout<<"| MODIFICAR DATOS DE EMPLEADO |";
+ gotoxy(64,12);cout<<" ::: Porfavor Ingrese La Cedula Que Desee Modificar : ";cin>>Cedula;
+ //cout<<" ::: ";
+// MostrarTotal();
  }else if(i==3){
   
  }else if(i==4){

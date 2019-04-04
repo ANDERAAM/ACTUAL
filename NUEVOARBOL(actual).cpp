@@ -30,6 +30,10 @@ ABB2 Abb2 = NULL;
 ABB3 Abb3 = NULL;
 
 vector<string>B1;vector<string>B2;vector<string>Auxiliar;vector<string>Fichero;
+vector<string>FICHERO;vector<string>EMPLEADOS;
+
+
+
 
 Empleados *CrearEmpleados(Empleados *&Arbol ,long long Cedula, long long Salario,long long  Bonificaciones , long long Descuentos ,string Nombre ,string NombreEmpresa , string FechaNacimiento , string Departamento , string Cod1,string Cod2 ){
     Empleados *Empleado              =   new Empleados();
@@ -276,7 +280,7 @@ void BaseFichero(){
 void BaseArbol(){
   fflush( stdin );vector<string>v;
  ifstream Archivo;string letra;string total;B2.clear();
- Archivo.open("Empleados.txt",ios::in);
+ Archivo.open("Empleados.txt",ios::in); 
  while(!Archivo.eof()){
       Archivo>>letra;
       if(letra!="*" && letra!="|"){
@@ -351,8 +355,15 @@ bool busquedaRec(Empleados *&Arbol, long long dato){
         
         return r;
 }   
+void VistaMod(){
+  gotoxy(65,1);cout<<"____________________________________________________________";
+  gotoxy(85,3);cout<<"SISTEMA NOMINA V2.0";
+  gotoxy(65,4);cout<<"____________________________________________________________"; 
+  gotoxy(80,6);cout<<"| MODIFICAR DATOS DE EMPLEADO |";  
+}
 void MOD(string Arbol,long long x){   
             long long Cedula ;string Nombre ;string FechaNacimiento ;long long Salario;string Opcion;string Numero;system("cls");int P;
+            VistaMod();
             gotoxy(70,8);  cout<<"SELECCIONE LOS DATOS DEL EMPLEADO QUE DESEA MODIFICAR";
             gotoxy(87,11); cout<<"0. CEDULA";
             gotoxy(87,13); cout<<"1. EMPRESA A DONDE LABORA";
@@ -361,6 +372,8 @@ void MOD(string Arbol,long long x){
             gotoxy(87,19); cout<<"4. DEPARTAMENTO";
             gotoxy(87,21); cout<<"5. SALARIO DEL EMPLEADO";
             gotoxy(70,24);cout<<"Seleccione EL Departamento Deacuerdo Al Numero -> ";cin>>Opcion;//cout<<Opcion<<endl;getch();            if(Opcion=="0"){system("cls");
+            if(Opcion=="0"){system("cls");VistaMod();gotoxy(72,19); cout<<"INGRESE LA CEDULA DEL NUEVO EMPLEADO : ";cin>>Numero;P=Posicion(Numero,B2);Cedula = Convertir(Numero);
+            if(Auxiliar[1]=="CEMENTOS ARGOS EMPRESA C")InsertarEmpleados(Abb3 ,atoll(Auxiliar[0].c_str()),atoll(Auxiliar[5].c_str()),atoll(Auxiliar[9].c_str()),atoll(Auxiliar[8].c_str()),Auxiliar[2],Auxiliar[1],Auxiliar[3],Auxiliar[4],Auxiliar[6],Auxiliar[7]);  
             if(Opcion=="0"){system("cls");gotoxy(72,19); cout<<"INGRESE LA CEDULA DEL NUEVO EMPLEADO : ";cin>>Numero;P=Posicion(Numero,B2);Cedula = Convertir(Numero);
             if(P!=-1){system("cls");gotoxy(50,12);printf("I N G R E S E  U N A  C E D U L A  N O  R E P E T I D A");getch();exit(1);}else{Auxiliar[0]=Numero;}}
             else if(Opcion=="1"){system("cls");Empresa1(1);}
@@ -374,6 +387,8 @@ void MOD(string Arbol,long long x){
             if(Auxiliar[1]=="CEMENTOS ARGOS EMPRESA C")InsertarEmpleados(Abb3 ,atoll(Auxiliar[0].c_str()),atoll(Auxiliar[5].c_str()),atoll(Auxiliar[9].c_str()),atoll(Auxiliar[8].c_str()),Auxiliar[2],Auxiliar[1],Auxiliar[3],Auxiliar[4],Auxiliar[6],Auxiliar[7]);  
             getch();  
     }
+  }
+
 void Encontro(Empleados *&Arbol,long long x){
       int P = busquedaRec(Arbol,x);
         if(P==0){
@@ -425,6 +440,18 @@ void Ventana(){
 
 void Menu();
 
+
+
+CargarDatos(){
+  fstream Archivo1,Archivo2;
+  fflush( stdin );
+  Archivo1.open("Empleados.txt",ios::out | ios::in);Archivo2.open("Parametros.txt",ios::out | ios::in);
+    
+  
+}
+
+
+
 int main(){
   system("cls");cin.clear();fflush( stdin );
   BaseFichero();
@@ -458,16 +485,17 @@ void Menu(){
  gotoxy(85,3);cout<<"SISTEMA NOMINA V2.0";
  gotoxy(65,4);cout<<"____________________________________________________________"; 
  gotoxy(80,6);cout<<"| MODIFICAR DATOS DE EMPLEADO |";
- gotoxy(64,12);cout<<" ::: Porfavor Ingrese La Cedula Que Desee Modificar : ";cin>>Cedula;
- //cout<<" ::: ";
-// MostrarTotal();
+ gotoxy(64,12);cout<<" ::: Porfavor Ingrese La Cedula Que Desee Modificar : ";
+ gotoxy(119,12);cin>>Cedula;string cedula = itoa(Cedula);
+ string Empresa = Parbol(cedula,B2);MOD(Empresa,Cedula);
+ 
  }else if(i==3){
   
  }else if(i==4){
   
  }else if(i==5){
   
- }else if(i==6){
+ }else if(i==6){ 
   
  }else if(i==7){
   
@@ -475,6 +503,8 @@ void Menu(){
    
  }
  }
+
+
 
 
 int arbol;string Departamento;string NombreEmpresa;int Opcion=1; int a=0 ;

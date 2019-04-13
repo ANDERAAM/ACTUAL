@@ -361,9 +361,10 @@ void VistaMod(){
   gotoxy(65,4);cout<<"____________________________________________________________"; 
   gotoxy(80,6);cout<<"| MODIFICAR DATOS DE EMPLEADO |";  
 }
+ 
 void MOD(string Arbol,long long x){   
  long long Cedula ;string Nombre ;string FechaNacimiento ;long long Salario;string Opcion;string Numero;system("cls");int P;
- cin.clear();fflush( stdin );
+cin.clear();fflush( stdin );
 VistaMod();
 gotoxy(70,8);  cout<<"SELECCIONE LOS DATOS DEL EMPLEADO QUE DESEA MODIFICAR";
 gotoxy(87,11); cout<<"0. CEDULA";
@@ -382,12 +383,11 @@ else if(Opcion=="4"){system("cls");Departamento1(1);}
 else if(Opcion=="5"){system("cls");gotoxy(72,19);cout<<"INGRESE EL SALARIO DEL NUEVO EMPLEADO : ";cin.ignore();getline(cin,Numero);Salario=Convertir(Numero);Auxiliar[5]=Numero;}
 system("cls");
 //for(int i=0;i<Auxiliar.size();i++) cout<<" ["<<i<<"] "<<Auxiliar[i]<<endl;
-
-if(Auxiliar[1]=="ECOPETROL EMPRESA A")InsertarEmpleados(Abb1 ,atoll(Auxiliar[0].c_str()),atoll(Auxiliar[5].c_str()),atoll(Auxiliar[9].c_str()),atoll(Auxiliar[8].c_str()),Auxiliar[1],Auxiliar[2],Auxiliar[3],Auxiliar[4],Auxiliar[6],Auxiliar[7]); 
-if(Auxiliar[1]=="BAVARIA EMPRESA B")InsertarEmpleados(Abb2 ,atoll(Auxiliar[0].c_str()),atoll(Auxiliar[5].c_str()),atoll(Auxiliar[9].c_str()),atoll(Auxiliar[8].c_str()),Auxiliar[1],Auxiliar[2],Auxiliar[3],Auxiliar[4],Auxiliar[6],Auxiliar[7]); 
-if(Auxiliar[1]=="CEMENTOS ARGOS EMPRESA C")InsertarEmpleados(Abb3 ,atoll(Auxiliar[0].c_str()),atoll(Auxiliar[0].c_str()),atoll(Auxiliar[9].c_str()),atoll(Auxiliar[8].c_str()),Auxiliar[1],Auxiliar[2],Auxiliar[3],Auxiliar[4],Auxiliar[6],Auxiliar[7]); 
-getch(); 
-  }
+ if(Auxiliar[1]=="ECOPETROL EMPRESA A")InsertarEmpleados(Abb1 ,atoll(Auxiliar[0].c_str()),atoll(Auxiliar[5].c_str()),atoll(Auxiliar[9].c_str()),atoll(Auxiliar[8].c_str()),Auxiliar[1],Auxiliar[2],Auxiliar[3],Auxiliar[4],Auxiliar[6],Auxiliar[7]); 
+ if(Auxiliar[1]=="BAVARIA EMPRESA B")InsertarEmpleados(Abb2 ,atoll(Auxiliar[0].c_str()),atoll(Auxiliar[5].c_str()),atoll(Auxiliar[9].c_str()),atoll(Auxiliar[8].c_str()),Auxiliar[1],Auxiliar[2],Auxiliar[3],Auxiliar[4],Auxiliar[6],Auxiliar[7]); 
+ if(Auxiliar[1]=="CEMENTOS ARGOS EMPRESA C")InsertarEmpleados(Abb3 ,atoll(Auxiliar[0].c_str()),atoll(Auxiliar[0].c_str()),atoll(Auxiliar[9].c_str()),atoll(Auxiliar[8].c_str()),Auxiliar[1],Auxiliar[2],Auxiliar[3],Auxiliar[4],Auxiliar[6],Auxiliar[7]); 
+ getch(); 
+}
   
 
 
@@ -407,7 +407,7 @@ void Encontro(Empleados *&Arbol,long long x){
 }
 
 int a1 = 5 , b1 = 22, c1=32 , d1 = 22,a2 = 70 , b2 = 22, c2=103 , d2 = 22;
-int a3 = 140 , b3 = 22,a4 = 170 , b4 = 22;  
+int a3 = 140 , b3 = 22,a4 = 170 , b4 = 22;int q=0;  
 
 void Mostrar(Empleados *&Arbol){
     fflush( stdin );fflush( stdin );fflush( stdin );
@@ -442,15 +442,27 @@ void Ventana(){
 
 
 void Menu();
-
-
+ofstream Archivo; 
+void Aux1(Empleados *&Arbol){
+  
+ if(q==0)Archivo.open("Empleados.txt",ios::out);
+ q++;
+ if(Arbol!=NULL){
+ Archivo<<Arbol->Cedula<<" * "<<Arbol->NombreEmpresa<<" * "<<Arbol->Nombre<<" * "<<Arbol->FechaNacimiento<<" * "<<Arbol->Departamento<<" * "<<Arbol->Salario<<" * |"<<endl;  
+ }else Archivo.close();
+ 
+ Aux1(Arbol->izq);
+ Aux1(Arbol->der);
+ }
 
 CargarDatos(){
-  fstream Archivo1,Archivo2;
-  fflush( stdin );
-  Archivo1.open("Empleados.txt",ios::out | ios::in);Archivo2.open("Parametros.txt",ios::out | ios::in);
-        
-  
+fflush( stdin );
+Aux1(Abb1);
+//Aux1(Abb2);
+//Aux1(Abb3); 
+
+
+
 }
 
 
@@ -461,9 +473,11 @@ int main(){
   BaseArbol();
   Menu();
 
+  CargarDatos();
+  
   
 //system("cls");  
-MostrarTotal();  
+// Mostrar(Abb1);  
   getch();
 }
 
